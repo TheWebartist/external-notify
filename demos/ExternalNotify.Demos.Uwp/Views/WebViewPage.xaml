@@ -1,0 +1,71 @@
+﻿<Page x:Class="ExternalNotify.Demos.Uwp.Views.WebViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:ExternalNotify.Demos.Uwp.Models"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+
+        <AcrylicBrush
+                x:Key="AccentAcrylicBrush"
+                TintColor="#4036B3"
+                TintOpacity="0.87"
+                FallbackColor="#4036B3"
+                BackgroundSource="HostBackdrop" />
+
+        <DataTemplate x:Key="NotifyMessageTemplate"
+                      x:DataType="models:ExternalNotifyDemoMessage">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"
+                                   MaxHeight="110" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Text="{x:Bind MessageType}" />
+                <TextBlock Grid.Row="1"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="{x:Bind Value}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <SplitView x:Name="AppSplitView"
+               PaneBackground="{ThemeResource AccentAcrylicBrush}"
+               IsPaneOpen="True"
+               OpenPaneLength="256"
+               CompactPaneLength="48"
+               DisplayMode="Inline">
+        <SplitView.Pane>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Uid="PaneHeaderTextBlock"
+                           Margin="60,12,0,0"
+                           Style="{StaticResource BaseTextBlockStyle}" />
+                <ListView x:Name="ReceivedMessagesListView"
+                          Grid.Row="1"
+                          IsItemClickEnabled="True"
+                          ItemsSource="{x:Bind ReceivedMessages}"
+                          ItemTemplate="{StaticResource NotifyMessageTemplate}"
+                          Margin="0,16"
+                          SelectionMode="Single"
+                          VerticalAlignment="Stretch" />
+                <TextBlock Grid.Row="2"
+                           Padding="16">
+                    <Run x:Uid="VersionPrefixRun" />
+                    <Run Text="{x:Bind Version}" />
+                </TextBlock>
+            </Grid>
+        </SplitView.Pane>
+
+        <WebView x:Name="DemoWebView" />
+    </SplitView>
+</Page>

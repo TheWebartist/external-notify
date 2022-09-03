@@ -10,3 +10,4 @@ https://externalnotify.netlify.app/
 This hosting permits to easyly try window.external.notify in an UWP/WAP project.
 
 You just needs to add this address to `ApplicationContentUriRules` section of your app's appxmanifest file.
+![Screenshot](img/application_content_uri_rules.png)
