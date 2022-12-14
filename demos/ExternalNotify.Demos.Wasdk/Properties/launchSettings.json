@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ExternalNotify.Demos.Wasdk (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ExternalNotify.Demos.Wasdk (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
