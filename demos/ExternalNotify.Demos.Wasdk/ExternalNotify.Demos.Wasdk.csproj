@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -13,6 +13,7 @@
     <DefaultLanguage>fr</DefaultLanguage>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Favicon.ico" />
     <None Remove="Views\WebViewWindow.xaml" />
   </ItemGroup>
   <ItemGroup>

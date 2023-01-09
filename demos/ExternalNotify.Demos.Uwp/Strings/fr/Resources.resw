@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>Démo external notify</value>
+  </data>
   <data name="AppName_TextBlock.Text" xml:space="preserve">
-    <value>Démo pour external notify</value>
+    <value>Démo external notify</value>
   </data>
   <data name="PaneHeaderTextBlock.Text" xml:space="preserve">
     <value>Messages reçus</value>

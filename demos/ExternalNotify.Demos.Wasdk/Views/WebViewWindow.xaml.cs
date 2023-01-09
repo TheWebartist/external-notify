@@ -6,6 +6,7 @@
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using Microsoft.Web.WebView2.Core;
+    using Microsoft.Windows.ApplicationModel.Resources;
     using System;
     using System.Collections.ObjectModel;
     using Windows.ApplicationModel;
@@ -16,11 +17,18 @@
     /// </summary>
     public sealed partial class WebViewWindow : Window
     {
+        #region Constants and fields
+
+        private readonly ResourceManager resourcesManager;
+
+        #endregion Constants and fields
+
         #region Constructor
 
         public WebViewWindow()
         {
             InitializeComponent();
+            resourcesManager = new ResourceManager();
             DemoWebView2.WebMessageReceived += OnDemoWebView2WebMessageReceived;
             TryAdaptTitleBar();
         }
@@ -68,10 +76,13 @@
                 titleBar.ButtonPressedBackgroundColor = Colors.DarkSlateBlue;
 
                 // Set inactive window colors
-                titleBar.InactiveForegroundColor = Colors.Gainsboro;
-                titleBar.InactiveBackgroundColor = Colors.LightSteelBlue;
-                titleBar.ButtonInactiveForegroundColor = Colors.Gainsboro;
-                titleBar.ButtonInactiveBackgroundColor = Colors.LightSteelBlue;
+                titleBar.InactiveForegroundColor = titleBar.ButtonInactiveForegroundColor = Colors.Gainsboro;
+                titleBar.InactiveBackgroundColor = titleBar.ButtonInactiveBackgroundColor = Colors.SlateBlue;
+
+                if (appWindow != null)
+                {
+                    appWindow.SetIcon("Assets/Favicon.ico");
+                }
             }
             else
             {
@@ -80,6 +91,7 @@
                 // the custom title bar element.
                 AppTitleBar.Visibility = Visibility.Collapsed;
             }
+            Title = resourcesManager.MainResourceMap.TryGetValue("Resources/AppName")?.ValueAsString;
         }
 
         #region Event handlers
