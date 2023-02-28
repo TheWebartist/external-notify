@@ -187,12 +187,21 @@
                     showNotification('Message notified !')
                 }
                 catch (e) {
+                    var jsonMessage = null;
+                    var notifMessage = ''
                     try {
-                        window.chrome.webview.postMessage(msg)
+                        jsonMessage = JSON.parse(msg)
+                    }
+                    catch {
+                        // Ignore JSON parsing
+                        console.log("The message cannot be parsed in JSON.")
+                    }
+                    try {
+                        window.chrome.webview.postMessage(jsonMessage != null ? jsonMessage : msg)
                         showNotification('Message posted !')
                     }
-                    catch (e) {
-                        var notifMessage = 'This site is intended to be used within an UWP/WAP WebView... See more info on GitHub project page.'
+                    catch (fe) {
+                        notifMessage = 'This site is intended to be used within an UWP/WAP WebView... See more info on GitHub project page.'
                         console.log(notifMessage)
                         showNotification(notifMessage)
                     }
